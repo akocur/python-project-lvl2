@@ -1,3 +1,5 @@
 .idea/
 .coverage
 coverage.xml
+dist/
+**/__pycache__
