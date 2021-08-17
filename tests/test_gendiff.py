@@ -3,22 +3,13 @@ from gendiff.gendiff import generate_diff
 
 
 @pytest.fixture
-def file1():
-    return {
-        "host": "hexlet.io",
-        "timeout": 50,
-        "proxy": "123.234.53.22",
-        "follow": false
-    }
+def file_path1():
+    return 'file1.json'
 
 
 @pytest.fixture
-def file2():
-    return {
-        "timeout": 20,
-        "verbose": true,
-        "host": "hexlet.io"
-    }
+def file_path2():
+    return 'file2.json'
 
 
 def test_generate_diff():
@@ -30,4 +21,4 @@ def test_generate_diff():
   + timeout: 20
   + verbose: true
 }"""
-    assert generate_diff(file1, file2) == expected
+    assert generate_diff(file_path1, file_path2) == expected
