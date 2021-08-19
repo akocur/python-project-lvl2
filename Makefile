@@ -13,4 +13,7 @@ check: selfcheck test lint
 build: check
 	poetry build
 
+rec:
+	poetry run asciinema rec
+
 .PHONY: install test lint selfcheck check build
