@@ -24,7 +24,9 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Install poetry
-        run: snok/install-poetry@v1.1.8
+        run: |
+          curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+          poetry config virtualenvs.in-project true
 
       - name: Install dependencies
         run: make install
