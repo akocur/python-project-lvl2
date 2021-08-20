@@ -1,4 +1,6 @@
 import json
+from operator import itemgetter
+from itertools import chain
 
 
 def generate_diff(file_path1, file_path2):
@@ -14,24 +16,25 @@ def generate_diff(file_path1, file_path2):
     json2 = json.load(open(file_path2))
     keys1 = json1.keys()
     keys2 = json2.keys()
-    keys = sorted(list(keys1 | keys2))
+    only_json1 = ((key, get_line('-', key, value_to_json(json1.get(key))))
+                  for key in keys1 - keys2)
+    only_json2 = ((key, get_line('+', key, value_to_json(json2.get(key))))
+                  for key in keys2 - keys1)
+    equal_values = ((key, get_line(' ', key, value_to_json(json2.get(key))))
+                    for key in filter(lambda k: json1.get(k) == json2.get(k),
+                                      keys1 & keys2))
+    different_values = ((key, '\n'.join(
+        [get_line('-', key, value_to_json(json1.get(key))),
+         get_line('+', key, value_to_json(json2.get(key))),
+         ]))
+        for key in filter(lambda k: json1.get(k) != json2.get(k),
+                          keys1 & keys2))
     result = ['{']
-    for key in keys:
-        value1 = json1.get(key)
-        value2 = json2.get(key)
-        if key in keys1 and key not in keys2:
-            line = get_line('-', key, value_to_json(value1))
-            result.append(line)
-        elif key in keys2 and key not in keys1:
-            line = get_line('+', key, value_to_json(value2))
-            result.append(line)
-        elif value1 == value2:
-            line = get_line(' ', key, value_to_json(value1))
-            result.append(line)
-        else:
-            line1 = get_line('-', key, value_to_json(value1))
-            line2 = get_line('+', key, value_to_json(value2))
-            result.append(line1)
-            result.append(line2)
+    result.extend(map(itemgetter(1),
+                      sorted(chain(only_json1,
+                                   only_json2,
+                                   equal_values,
+                                   different_values))))
     result.append('}')
+    print(result)
     return '\n'.join(result)
