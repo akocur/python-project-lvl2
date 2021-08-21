@@ -21,15 +21,15 @@ def parse(data1, data2, file_type='json'):
 
     only_data1 = difference(data1, data2, '-')
     only_data2 = difference(data2, data1, '+')
-    key_intersection = data1.keys() & data2.keys()
+    common_keys = data1.keys() & data2.keys()
     equal_values = ((key, get_line(' ', key, convert_value(data2.get(key))))
                     for key in filter(lambda k: data1.get(k) == data2.get(k),
-                                      key_intersection))
+                                      common_keys))
     different_values = ((key, '\n'.join(
         [get_line('-', key, convert_value(data1.get(key))),
          get_line('+', key, convert_value(data2.get(key))),
          ])) for key in filter(lambda k: data1.get(k) != data2.get(k),
-                               key_intersection))
+                               common_keys))
     result = ['{']
     result.extend(map(itemgetter(1),
                       sorted(chain(only_data1,
