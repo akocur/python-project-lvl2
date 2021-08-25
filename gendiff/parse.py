@@ -1,7 +1,5 @@
 from itertools import chain
 from operator import itemgetter
-import json
-import yaml
 
 
 def parse(data1, data2, file_type='json'):
@@ -9,11 +7,9 @@ def parse(data1, data2, file_type='json'):
         return '  {} {}: {}'.format(sign, key, value)
 
     def convert_value(value):
-        if isinstance(value, str):
-            return value
-        if file_type == 'json':
-            return json.dumps(value)
-        return yaml.safe_dump(value)[:-5]
+        if value is None:
+            return 'null'
+        return str(value).lower()
 
     def difference(dict1, dict2, sign):
         return ((key, get_line(sign, key, convert_value(dict1.get(key))))
