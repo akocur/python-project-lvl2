@@ -63,11 +63,11 @@ def get_line(current_diff, current_indent_width):
     if status is None:
         children = diff.get_children(current_diff)
         line = make_line(
-                indent,
-                sign_unchanged,
-                key,
-                stylish(children, new_indent_width(current_indent_width))
-            )
+            indent,
+            sign_unchanged,
+            key,
+            stylish(children, new_indent_width(current_indent_width))
+        )
     elif status == diff.STATUS_MODIFIED:
         line1 = make_line(
             indent,
@@ -82,25 +82,25 @@ def get_line(current_diff, current_indent_width):
         line = '\n'.join([line1, line2])
     elif status == diff.STATUS_ADDED:
         line = make_line(
-                indent,
-                sign_added,
-                key,
-                format_(new_value, new_indent_width(current_indent_width))
-            )
+            indent,
+            sign_added,
+            key,
+            format_(new_value, new_indent_width(current_indent_width))
+        )
     elif status == diff.STATUS_DELETED:
         line = make_line(
-                indent,
-                sign_deleted,
-                key,
-                format_(old_value, new_indent_width(current_indent_width))
-            )
+            indent,
+            sign_deleted,
+            key,
+            format_(old_value, new_indent_width(current_indent_width))
+        )
     else:
         line = make_line(
-                indent,
-                sign_unchanged,
-                key,
-                format_(old_value, new_indent_width(current_indent_width))
-            )
+            indent,
+            sign_unchanged,
+            key,
+            format_(old_value, new_indent_width(current_indent_width))
+        )
     return line
 
 
