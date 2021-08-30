@@ -1,12 +1,13 @@
 import json
 import yaml
 from gendiff.parse import parse
+from gendiff.format.stylish import stylish
 
 
-def generate_diff(file_path1, file_path2):
+def generate_diff(file_path1, file_path2, format_=stylish):
     data1 = load(file_path1)
     data2 = load(file_path2)
-    return parse(data1, data2, file_type(file_path1))
+    return format_(parse(data1, data2))
 
 
 def load(file_path):
