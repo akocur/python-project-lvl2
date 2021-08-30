@@ -50,61 +50,57 @@ def format_(value, current_indent_width):
     return value
 
 
-def stylish(diffs):
-
-    def walk(current_diffs, current_indent_width):
-        lines = ['{']
-        indent = char_for_indent * current_indent_width
-        for current_diff in sorted(current_diffs, key=diff.get_key):
-            status = diff.get_status(current_diff)
-            key = diff.get_key(current_diff)
-            old_value = diff.get_old_value(current_diff)
-            new_value = diff.get_new_value(current_diff)
-            if status is None:
-                children = diff.get_children(current_diff)
-                lines.append(
-                    make_line(
-                        indent,
-                        sign_equal,
-                        key,
-                        walk(children, new_indent_width(current_indent_width))
-                    )
-                )
-            elif status == diff.STATUS_MODIFY:
-                lines.append(make_line(
-                    indent,
-                    sign_delete,
-                    key,
-                    format_(old_value, new_indent_width(current_indent_width))
-                ))
-                lines.append(make_line(
-                    indent,
-                    sign_new,
-                    key,
-                    format_(new_value, new_indent_width(current_indent_width))
-                ))
-            elif status == diff.STATUS_NEW:
-                lines.append(make_line(
-                    indent,
-                    sign_new,
-                    key,
-                    format_(new_value, new_indent_width(current_indent_width))
-                ))
-            elif status == diff.STATUS_DELETE:
-                lines.append(make_line(
-                    indent,
-                    sign_delete,
-                    key,
-                    format_(old_value, new_indent_width(current_indent_width))
-                ))
-            else:
-                lines.append(make_line(
+def stylish(diffs, current_indent_width=indent_width):
+    lines = ['{']
+    indent = char_for_indent * current_indent_width
+    for current_diff in sorted(diffs, key=diff.get_key):
+        status = diff.get_status(current_diff)
+        key = diff.get_key(current_diff)
+        old_value = diff.get_old_value(current_diff)
+        new_value = diff.get_new_value(current_diff)
+        if status is None:
+            children = diff.get_children(current_diff)
+            lines.append(
+                make_line(
                     indent,
                     sign_equal,
                     key,
-                    format_(old_value, new_indent_width(current_indent_width))
-                ))
-        lines.append(make_end_bracket(current_indent_width))
-        return '\n'.join(lines)
-
-    return walk(diffs, indent_width)
+                    stylish(children, new_indent_width(current_indent_width))
+                )
+            )
+        elif status == diff.STATUS_MODIFY:
+            lines.append(make_line(
+                indent,
+                sign_delete,
+                key,
+                format_(old_value, new_indent_width(current_indent_width))
+            ))
+            lines.append(make_line(
+                indent,
+                sign_new,
+                key,
+                format_(new_value, new_indent_width(current_indent_width))
+            ))
+        elif status == diff.STATUS_NEW:
+            lines.append(make_line(
+                indent,
+                sign_new,
+                key,
+                format_(new_value, new_indent_width(current_indent_width))
+            ))
+        elif status == diff.STATUS_DELETE:
+            lines.append(make_line(
+                indent,
+                sign_delete,
+                key,
+                format_(old_value, new_indent_width(current_indent_width))
+            ))
+        else:
+            lines.append(make_line(
+                indent,
+                sign_equal,
+                key,
+                format_(old_value, new_indent_width(current_indent_width))
+            ))
+    lines.append(make_end_bracket(current_indent_width))
+    return '\n'.join(lines)
