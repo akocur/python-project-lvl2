@@ -1,13 +1,13 @@
 import gendiff.diff as diff
 
 
-sign_new = '+'
-sign_delete = '-'
-sign_equal = ' '
+sign_added = '+'
+sign_deleted = '-'
+sign_unchanged = ' '
 char_for_indent = ' '
 indent_width = 2
 width_between_sign_and_key = 1 + max(map(
-    len, (sign_new, sign_delete, sign_equal)
+    len, (sign_added, sign_deleted, sign_unchanged)
 ))
 
 
@@ -63,42 +63,42 @@ def stylish(diffs, current_indent_width=indent_width):
             lines.append(
                 make_line(
                     indent,
-                    sign_equal,
+                    sign_unchanged,
                     key,
                     stylish(children, new_indent_width(current_indent_width))
                 )
             )
-        elif status == diff.STATUS_MODIFY:
+        elif status == diff.STATUS_MODIFIED:
             lines.append(make_line(
                 indent,
-                sign_delete,
+                sign_deleted,
                 key,
                 format_(old_value, new_indent_width(current_indent_width))
             ))
             lines.append(make_line(
                 indent,
-                sign_new,
+                sign_added,
                 key,
                 format_(new_value, new_indent_width(current_indent_width))
             ))
-        elif status == diff.STATUS_NEW:
+        elif status == diff.STATUS_ADDED:
             lines.append(make_line(
                 indent,
-                sign_new,
+                sign_added,
                 key,
                 format_(new_value, new_indent_width(current_indent_width))
             ))
-        elif status == diff.STATUS_DELETE:
+        elif status == diff.STATUS_DELETED:
             lines.append(make_line(
                 indent,
-                sign_delete,
+                sign_deleted,
                 key,
                 format_(old_value, new_indent_width(current_indent_width))
             ))
         else:
             lines.append(make_line(
                 indent,
-                sign_equal,
+                sign_unchanged,
                 key,
                 format_(old_value, new_indent_width(current_indent_width))
             ))

@@ -1,22 +1,23 @@
 from itertools import chain
 
 
-STATUS_NEW = 'new'
-STATUS_DELETE = 'delete'
-STATUS_EQUAL = 'equal'
-STATUS_MODIFY = 'modify'
+STATUS_ADDED = 'added'
+STATUS_DELETED = 'deleted'
+STATUS_UNCHANGED = 'unchanged'
+STATUS_MODIFIED = 'modified'
 
 
 def evaluate_status(key1, value1, key2, value2):
+    status = STATUS_MODIFIED
     if key1 is None:
-        return STATUS_NEW
+        status = STATUS_ADDED
     if key2 is None:
-        return STATUS_DELETE
+        status = STATUS_DELETED
     if isinstance(value1, dict) and isinstance(value2, dict):
-        return None
+        status = None
     if value1 == value2:
-        return STATUS_EQUAL
-    return STATUS_MODIFY
+        status = STATUS_UNCHANGED
+    return status
 
 
 def make_diff(key1, value1, key2, value2):
