@@ -1,5 +1,4 @@
 import argparse
-import pathlib
 
 from gendiff.gendiff import generate_diff
 
