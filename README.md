@@ -3,4 +3,4 @@
 ### CODE CLIMATE:
 [![Maintainability](https://api.codeclimate.com/v1/badges/f18410dbffcbbdb6159d/maintainability)](https://codeclimate.com/github/akocur/python-project-lvl2/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/f18410dbffcbbdb6159d/test_coverage)](https://codeclimate.com/github/akocur/python-project-lvl2/test_coverage)
 ### Demo:
-https://asciinema.org/a/YFEVnjF47L8p7ccGkaDjwe7A4
+[![asciicast](https://asciinema.org/a/IaJurMT694dFNie6qyUwf0U54.svg)](https://asciinema.org/a/IaJurMT694dFNie6qyUwf0U54)
