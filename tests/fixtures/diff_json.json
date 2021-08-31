@@ -31,6 +31,20 @@
     },
     "children": [
       {
+        "key": "follow",
+        "status": "added",
+        "old_value": null,
+        "new_value": false,
+        "children": null
+      },
+      {
+        "key": "setting1",
+        "status": "unchanged",
+        "old_value": "Value 1",
+        "new_value": "Value 1",
+        "children": null
+      },
+      {
         "key": "setting2",
         "status": "deleted",
         "old_value": 200,
@@ -38,12 +52,10 @@
         "children": null
       },
       {
-        "key": "setting5",
-        "status": "added",
-        "old_value": null,
-        "new_value": {
-          "key5": "value5"
-        },
+        "key": "setting3",
+        "status": "modified",
+        "old_value": true,
+        "new_value": null,
         "children": null
       },
       {
@@ -54,17 +66,12 @@
         "children": null
       },
       {
-        "key": "follow",
+        "key": "setting5",
         "status": "added",
         "old_value": null,
-        "new_value": false,
-        "children": null
-      },
-      {
-        "key": "setting3",
-        "status": "modified",
-        "old_value": true,
-        "new_value": null,
+        "new_value": {
+          "key5": "value5"
+        },
         "children": null
       },
       {
@@ -84,13 +91,6 @@
           }
         },
         "children": [
-          {
-            "key": "ops",
-            "status": "added",
-            "old_value": null,
-            "new_value": "vops",
-            "children": null
-          },
           {
             "key": "doge",
             "status": null,
@@ -116,15 +116,15 @@
             "old_value": "value",
             "new_value": "value",
             "children": null
+          },
+          {
+            "key": "ops",
+            "status": "added",
+            "old_value": null,
+            "new_value": "vops",
+            "children": null
           }
         ]
-      },
-      {
-        "key": "setting1",
-        "status": "unchanged",
-        "old_value": "Value 1",
-        "new_value": "Value 1",
-        "children": null
       }
     ]
   },
@@ -145,6 +145,13 @@
     },
     "children": [
       {
+        "key": "baz",
+        "status": "modified",
+        "old_value": "bas",
+        "new_value": "bars",
+        "children": null
+      },
+      {
         "key": "foo",
         "status": "unchanged",
         "old_value": "bar",
@@ -158,13 +165,6 @@
           "key": "value"
         },
         "new_value": "str",
-        "children": null
-      },
-      {
-        "key": "baz",
-        "status": "modified",
-        "old_value": "bas",
-        "new_value": "bars",
         "children": null
       }
     ]
