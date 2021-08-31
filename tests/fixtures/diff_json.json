@@ -1,0 +1,198 @@
+[
+  {
+    "key": "common",
+    "status": null,
+    "old_value": {
+      "setting1": "Value 1",
+      "setting2": 200,
+      "setting3": true,
+      "setting6": {
+        "key": "value",
+        "doge": {
+          "wow": ""
+        }
+      }
+    },
+    "new_value": {
+      "follow": false,
+      "setting1": "Value 1",
+      "setting3": null,
+      "setting4": "blah blah",
+      "setting5": {
+        "key5": "value5"
+      },
+      "setting6": {
+        "key": "value",
+        "ops": "vops",
+        "doge": {
+          "wow": "so much"
+        }
+      }
+    },
+    "children": [
+      {
+        "key": "setting2",
+        "status": "deleted",
+        "old_value": 200,
+        "new_value": null,
+        "children": null
+      },
+      {
+        "key": "setting5",
+        "status": "added",
+        "old_value": null,
+        "new_value": {
+          "key5": "value5"
+        },
+        "children": null
+      },
+      {
+        "key": "setting4",
+        "status": "added",
+        "old_value": null,
+        "new_value": "blah blah",
+        "children": null
+      },
+      {
+        "key": "follow",
+        "status": "added",
+        "old_value": null,
+        "new_value": false,
+        "children": null
+      },
+      {
+        "key": "setting3",
+        "status": "modified",
+        "old_value": true,
+        "new_value": null,
+        "children": null
+      },
+      {
+        "key": "setting6",
+        "status": null,
+        "old_value": {
+          "key": "value",
+          "doge": {
+            "wow": ""
+          }
+        },
+        "new_value": {
+          "key": "value",
+          "ops": "vops",
+          "doge": {
+            "wow": "so much"
+          }
+        },
+        "children": [
+          {
+            "key": "ops",
+            "status": "added",
+            "old_value": null,
+            "new_value": "vops",
+            "children": null
+          },
+          {
+            "key": "doge",
+            "status": null,
+            "old_value": {
+              "wow": ""
+            },
+            "new_value": {
+              "wow": "so much"
+            },
+            "children": [
+              {
+                "key": "wow",
+                "status": "modified",
+                "old_value": "",
+                "new_value": "so much",
+                "children": null
+              }
+            ]
+          },
+          {
+            "key": "key",
+            "status": "unchanged",
+            "old_value": "value",
+            "new_value": "value",
+            "children": null
+          }
+        ]
+      },
+      {
+        "key": "setting1",
+        "status": "unchanged",
+        "old_value": "Value 1",
+        "new_value": "Value 1",
+        "children": null
+      }
+    ]
+  },
+  {
+    "key": "group1",
+    "status": null,
+    "old_value": {
+      "baz": "bas",
+      "foo": "bar",
+      "nest": {
+        "key": "value"
+      }
+    },
+    "new_value": {
+      "foo": "bar",
+      "baz": "bars",
+      "nest": "str"
+    },
+    "children": [
+      {
+        "key": "foo",
+        "status": "unchanged",
+        "old_value": "bar",
+        "new_value": "bar",
+        "children": null
+      },
+      {
+        "key": "nest",
+        "status": "modified",
+        "old_value": {
+          "key": "value"
+        },
+        "new_value": "str",
+        "children": null
+      },
+      {
+        "key": "baz",
+        "status": "modified",
+        "old_value": "bas",
+        "new_value": "bars",
+        "children": null
+      }
+    ]
+  },
+  {
+    "key": "group2",
+    "status": "deleted",
+    "old_value": {
+      "abc": 12345,
+      "deep": {
+        "id": 45
+      }
+    },
+    "new_value": null,
+    "children": null
+  },
+  {
+    "key": "group3",
+    "status": "added",
+    "old_value": null,
+    "new_value": {
+      "deep": {
+        "id": {
+          "number": 45
+        }
+      },
+      "fee": 100500
+    },
+    "children": null
+  }
+]
