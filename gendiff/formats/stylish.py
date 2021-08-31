@@ -43,11 +43,7 @@ def make_end_bracket(current_indent_width):
 
 
 def make_line(indent, sign, key, value):
-    return '{}{} {}:{}{}'.format(indent,
-                                 sign,
-                                 key,
-                                 ' ' if value else '',
-                                 value)
+    return '{}{} {}: {}'.format(indent, sign, key, value)
 
 
 def new_indent_width(current_indent_width):
