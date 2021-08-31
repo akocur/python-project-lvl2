@@ -16,4 +16,7 @@ build: check
 rec:
 	poetry run asciinema rec
 
+install-package: build
+	python3 -m pip install --user .
+
 .PHONY: install test lint selfcheck check build
