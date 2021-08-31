@@ -2,17 +2,10 @@ import gendiff.diff as diff
 
 
 def flatten(lists):
-    result = []
+    def normalize(item):
+        return flatten(item) if isinstance(item, list) else [item]
 
-    def walk(node):
-        for elem in node:
-            if isinstance(elem, list):
-                walk(elem)
-            else:
-                result.append(elem)
-
-    walk(lists)
-    return result
+    return sum(map(normalize, lists), [])
 
 
 def formatted_value(value):
