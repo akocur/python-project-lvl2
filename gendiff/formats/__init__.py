@@ -1,6 +1,6 @@
-import gendiff.formats.plain
-import gendiff.formats.stylish
-import gendiff.formats.json
+from gendiff.formats.plain import plain
+from gendiff.formats.stylish import stylish
+from gendiff.formats.json import formatted_to_json
 
 FORMAT_PLAIN = 'plain'
 FORMAT_JSON = 'json'
@@ -15,16 +15,16 @@ def get_formatter(format_name):
         one of the available formatters.
     :return: formatting function
     """
-    if format_name == FORMAT_PLAIN:
-        return gendiff.formats.plain.plain
-    if format_name == FORMAT_JSON:
-        return gendiff.formats.json.formatted_to_json
-    return get_default_formatter()
+    return {
+        FORMAT_STYLISH: stylish,
+        FORMAT_PLAIN: plain,
+        FORMAT_JSON: formatted_to_json,
+    }.get(format_name)
 
 
-def get_default_formatter():
-    """Return default formatter."""
-    return gendiff.formats.stylish.stylish
+def get_default_format_name():
+    """Return default format name."""
+    return FORMAT_STYLISH
 
 
 def get_available_formatters():
