@@ -1,4 +1,5 @@
 from itertools import chain
+from itertools import starmap
 
 
 STATUS_ADDED = 'added'
@@ -115,9 +116,7 @@ def make_diff(key1, value1, key2, value2):
     """
     children = None
     if isinstance(value1, dict) and isinstance(value2, dict):
-        children = list(map(
-            lambda x: make_diff(*x), get_keys_values(value1, value2)
-        ))
+        children = list(starmap(make_diff, get_keys_values(value1, value2)))
 
     return {
         'key': key1 if key2 is None else key2,
