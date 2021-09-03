@@ -3,8 +3,8 @@
 ### CODE CLIMATE:
 [![Maintainability](https://api.codeclimate.com/v1/badges/f18410dbffcbbdb6159d/maintainability)](https://codeclimate.com/github/akocur/python-project-lvl2/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/f18410dbffcbbdb6159d/test_coverage)](https://codeclimate.com/github/akocur/python-project-lvl2/test_coverage)
 
-###Gendiff is a CLI utility for finding differences between configuration files. 
-###Suppported formats: YAML, JSON
+### Gendiff is a CLI utility for finding differences between configuration files. 
+### Suppported formats: YAML, JSON
 ## Usage
 
 ### As external library
